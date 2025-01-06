@@ -1,0 +1,8 @@
+GitK Plugin v1.0.0
+
+Initial release:
+- Open GitK from file context menu
+- Open GitK from sidebar for files and folders
+- Keyboard shortcut (Ctrl+Shift+G)
+- Main menu integration
+- Windows support
