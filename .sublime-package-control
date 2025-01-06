@@ -1,9 +1,0 @@
-{
-    "description": "Open GitK directly from Sublime Text. View Git history for files and folders with right-click or keyboard shortcut.",
-    "homepage": "https://github.com/deerua/sublime-gitk",
-    "issues": "https://github.com/deerua/sublime-gitk/issues",
-    "readme": "https://raw.githubusercontent.com/deerua/sublime-gitk/master/README.md",
-    "platforms": ["windows"],
-    "sublime_text": ">=3000",
-    "version": "1.0.0"
-}
