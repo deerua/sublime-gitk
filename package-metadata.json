@@ -1,0 +1,7 @@
+{
+    "version": "1.0.0",
+    "platforms": ["windows"],
+    "sublime_text": ">=3000",
+    "description": "Open GitK directly from Sublime Text. View Git history for files and folders with right-click or keyboard shortcut.",
+    "url": "https://github.com/deerua/sublime-gitk"
+}
