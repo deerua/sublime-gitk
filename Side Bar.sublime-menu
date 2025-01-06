@@ -1,0 +1,7 @@
+[
+    {
+        "caption": "Open in GitK",
+        "command": "gitk_from_sidebar",
+        "args": {"files": [], "dirs": []}
+    }
+]

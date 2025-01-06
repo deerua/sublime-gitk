@@ -1,0 +1,15 @@
+Thank you for installing GitK for Sublime Text!
+
+This plugin allows you to open GitK directly from Sublime Text.
+
+Usage:
+- Right-click on file -> "Open in GitK"
+- Right-click on file/folder in sidebar -> "Open in GitK"
+- Keyboard shortcut: Ctrl+Shift+G
+- Tools menu -> GitK
+
+Requirements:
+- Git must be installed with GitK
+
+For more information and updates, visit:
+https://github.com/deerua/sublime-gitk

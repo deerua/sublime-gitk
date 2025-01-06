@@ -1,0 +1,6 @@
+[
+    {
+        "caption": "Open in GitK",
+        "command": "gitk"
+    }
+]
