@@ -1,5 +1,10 @@
 [
     {
+        "id": "zzzzzz-gitk",
+        "caption": "GitK",
+        "command": "gitk"
+    },
+    {
         "id": "tools",
         "children": [
             {
