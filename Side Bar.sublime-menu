@@ -3,5 +3,10 @@
         "caption": "Open in GitK",
         "command": "gitk_from_sidebar",
         "args": {"files": [], "dirs": []}
+    },
+    {
+        "caption": "Open CMD here",
+        "command": "open_cmd",
+        "args": {"dirs": []}
     }
 ]
