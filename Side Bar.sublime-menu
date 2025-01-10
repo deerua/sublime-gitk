@@ -5,8 +5,19 @@
         "args": {"files": [], "dirs": []}
     },
     {
-        "caption": "Open CMD here",
-        "command": "open_cmd",
-        "args": {"dirs": []}
+        "caption": "Open CMD Here",
+        "command": "open_terminal",
+        "args": {
+            "dirs": [],
+            "terminal_type": "cmd"
+        }
+    },
+    {
+        "caption": "Open PowerShell Here",
+        "command": "open_terminal",
+        "args": {
+            "dirs": [],
+            "terminal_type": "powershell"
+        }
     }
 ]

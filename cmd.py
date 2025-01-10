@@ -3,9 +3,23 @@ import sublime_plugin
 import os
 import subprocess
 
-class OpenCmdCommand(sublime_plugin.WindowCommand):
-    def run(self, dirs=None):
-        print("OpenCmdCommand.run called with dirs:", dirs)
+class OpenTerminalCommand(sublime_plugin.WindowCommand):
+    TERMINALS = {
+        'cmd': {
+            'command': 'cmd',
+            'args': '/K "cd /d "{path}""',
+            'name': 'CMD'
+        },
+        'powershell': {
+            'command': 'powershell',
+            'args': '-NoExit -Command "Set-Location \'{path}\'"',
+            'name': 'PowerShell'
+        }
+    }
+
+    def run(self, dirs=None, terminal_type='cmd'):
+        print("OpenTerminalCommand.run called with dirs:", dirs)
+        print("Terminal type:", terminal_type)
         
         if not dirs:
             print("No directories provided")
@@ -24,19 +38,31 @@ class OpenCmdCommand(sublime_plugin.WindowCommand):
                 startupinfo = subprocess.STARTUPINFO()
                 startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
 
-            print("Starting CMD in:", path)
-            process = subprocess.Popen(
-                'cmd.exe /k cd /d ' + path,
-                cwd=path,
-                startupinfo=startupinfo
+            terminal = self.TERMINALS.get(terminal_type)
+            if not terminal:
+                raise ValueError("Unknown terminal type: {0}".format(terminal_type))
+
+            # Формуємо команду з параметрами
+            cmd = 'start {command} {args}'.format(
+                command=terminal['command'],
+                args=terminal['args'].format(path=path)
             )
-            print("CMD process started:", process.pid)
-
+            
+            print("Starting {0} in: {1}".format(terminal['name'], path))
+            process = subprocess.Popen(
+                cmd,
+                cwd=path,
+                startupinfo=startupinfo,
+                shell=True
+            )
+            print("{0} process started: {1}".format(terminal['name'], process.pid))
+            
         except Exception as e:
-            print("Error starting CMD:", str(e))
-            sublime.error_message("Error starting CMD: " + str(e))
-
-    def is_visible(self, dirs=None):
-        is_vis = bool(dirs)
-        print("OpenCmdCommand.is_visible:", is_vis, "dirs:", dirs)
+            error_msg = "Error starting {0}: {1}".format(terminal['name'], str(e))
+            print(error_msg)
+            sublime.error_message(error_msg)
+            
+    def is_visible(self, dirs=None, terminal_type='cmd'):
+        is_vis = bool(dirs) and os.name == 'nt'
+        print("OpenTerminalCommand.is_visible: {0} dirs: {1}".format(is_vis, dirs))
         return is_vis
