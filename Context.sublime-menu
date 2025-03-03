@@ -1,6 +1,5 @@
 [
     {
-        "id": "git-tools",
         "caption": "Open in GitK",
         "command": "gitk"
     },

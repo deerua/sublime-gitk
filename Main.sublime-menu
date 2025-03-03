@@ -4,20 +4,4 @@
         "caption": "GitK",
         "command": "gitk"
     },
-    {
-        "id": "tools",
-        "children": [
-            {
-                "caption": "GitK",
-                "command": "gitk"
-            },
-            {
-                "caption": "-"
-            },
-            {
-                "caption": "Disable Sublime Merge",
-                "command": "disable_sublime_merge"
-            }
-        ]
-    }
 ]

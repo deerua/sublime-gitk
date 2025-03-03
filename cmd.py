@@ -42,7 +42,6 @@ class OpenTerminalCommand(sublime_plugin.WindowCommand):
             if not terminal:
                 raise ValueError("Unknown terminal type: {0}".format(terminal_type))
 
-            # Формуємо команду з параметрами
             cmd = 'start {command} {args}'.format(
                 command=terminal['command'],
                 args=terminal['args'].format(path=path)

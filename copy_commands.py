@@ -29,14 +29,11 @@ class CopyGitPathCommand(sublime_plugin.WindowCommand):
         if not git_root:
             return
             
-        # Отримуємо ім'я репозиторію (останній компонент шляху кореня git)
         repo_name = os.path.basename(git_root)
         
-        # Отримуємо відносний шлях у репозиторії
         rel_path = utils.get_git_path(path)
         
         if rel_path:
-            # Формуємо повний шлях у форматі repo_name/path
             full_git_path = "{0}/{1}".format(repo_name, rel_path)
             
             sublime.set_clipboard(full_git_path)
@@ -53,7 +50,6 @@ class CopyProjectStructureCommand(sublime_plugin.WindowCommand):
             
         path = selected_paths[0]
         
-        # Визначаємо, чи це директорія чи файл
         if os.path.isdir(path):
             dir_name = os.path.basename(path)
             structure = ["📁 {0}/".format(dir_name)]
@@ -62,7 +58,6 @@ class CopyProjectStructureCommand(sublime_plugin.WindowCommand):
             file_name = os.path.basename(path)
             structure = ["📄 {0}".format(file_name)]
         
-        # Формуємо текст для копіювання
         structure_text = "\n".join(structure)
         
         sublime.set_clipboard(structure_text)
@@ -72,7 +67,6 @@ class CopyProjectStructureCommand(sublime_plugin.WindowCommand):
         return bool(files or dirs)
 
 
-# TextCommand версії команд для контекстного меню
 class CopyNameTextCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         view = self.view
@@ -99,19 +93,15 @@ class CopyGitPathTextCommand(sublime_plugin.TextCommand):
         if not git_root:
             return
             
-        # Отримуємо ім'я репозиторію (останній компонент шляху кореня git)
         repo_name = os.path.basename(git_root)
         
-        # Отримуємо відносний шлях у репозиторії
         rel_path = utils.get_git_path(path)
         
         if rel_path:
-            # Формуємо повний шлях у форматі repo_name/path
             full_git_path = "{0}/{1}".format(repo_name, rel_path)
             
             sublime.set_clipboard(full_git_path)
             sublime.status_message("Copied Git path: {0}".format(full_git_path))
         
     def is_visible(self):
-        # Показуємо команду тільки якщо файл відкритий та існує
         return bool(self.view.file_name())
