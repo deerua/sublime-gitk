@@ -79,7 +79,7 @@ def get_project_structure(path, depth=None, current_depth=0):
                 # Якщо це файл, просто додаємо його
                 result.append("{0}📄 {1}".format(prefix, item))
     
-    except (PermissionError, OSError, IOError) as e:
+    except (OSError, IOError) as e:
         result.append("Error accessing {0}: {1}".format(path, str(e)))
     
     return result
