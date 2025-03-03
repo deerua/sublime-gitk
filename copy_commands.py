@@ -43,7 +43,10 @@ class CopyGitPathCommand(sublime_plugin.WindowCommand):
         return bool(files or dirs)
 
 class CopyProjectStructureCommand(sublime_plugin.WindowCommand):
-    def run(self, files=None, dirs=None, depth=3):
+    # Папки, які ми завжди ігноруємо (додатково до .gitignore)
+    IGNORED_DIRS = ['node_modules', '.git', '.idea', '.vscode', 'dist', 'build']
+    
+    def run(self, files=None, dirs=None, depth=10):
         selected_paths = files or dirs or []
         if not selected_paths:
             return
@@ -72,6 +75,11 @@ class CopyProjectStructureCommand(sublime_plugin.WindowCommand):
         
         # Додаємо поточну директорію
         dir_name = os.path.basename(path)
+        
+        # Перевіряємо, чи не є ця директорія ігнорованою
+        if dir_name in self.IGNORED_DIRS:
+            return
+            
         prefix = '   ' * current_depth
         result.append("{0}📁 {1}/".format(prefix, dir_name))
         
@@ -88,8 +96,10 @@ class CopyProjectStructureCommand(sublime_plugin.WindowCommand):
             for item in items:
                 item_path = os.path.join(path, item)
                 
-                # Пропускаємо приховані файли та ті, що в .gitignore
+                # Пропускаємо приховані файли, ігноровані директорії та ті, що в .gitignore
                 if utils.is_hidden(item_path):
+                    continue
+                if item in self.IGNORED_DIRS:
                     continue
                 if git_root and utils.is_ignored_by_git(item_path, git_root):
                     continue
