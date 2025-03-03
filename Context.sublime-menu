@@ -1,47 +1,5 @@
 [
     {
-        "id": "sublime_merge",
-        "caption": "",
-        "command": "",
-        "args": {},
-        "visible": false
-    },
-    {
-        "id": "open_in_sublime_merge",
-        "caption": "",
-        "command": "",
-        "args": {},
-        "visible": false
-    },
-    {
-        "id": "blame_in_sublime_merge",
-        "caption": "",
-        "command": "",
-        "args": {},
-        "visible": false
-    },
-    {
-        "id": "git_status_in_sublime_merge",
-        "caption": "",
-        "command": "",
-        "args": {},
-        "visible": false
-    },
-    {
-        "id": "file_history_in_sublime_merge",
-        "caption": "",
-        "command": "",
-        "args": {},
-        "visible": false
-    },
-    {
-        "id": "line_history_in_sublime_merge",
-        "caption": "",
-        "command": "",
-        "args": {},
-        "visible": false
-    },
-    {
         "id": "git-tools",
         "caption": "Open in GitK",
         "command": "gitk"
