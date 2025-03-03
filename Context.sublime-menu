@@ -1,4 +1,55 @@
 [
+    // Перекриваємо команди Sublime Merge, щоб їх не було видно
+    {
+        "id": "sublime_merge",
+        "caption": "",
+        "command": "",
+        "args": {},
+        "mnemonic": "",
+        "visible": false
+    },
+    {
+        "id": "open_in_sublime_merge",
+        "caption": "",
+        "command": "",
+        "args": {},
+        "mnemonic": "",
+        "visible": false
+    },
+    {
+        "id": "blame_in_sublime_merge",
+        "caption": "",
+        "command": "",
+        "args": {},
+        "mnemonic": "",
+        "visible": false
+    },
+    {
+        "id": "git_status_in_sublime_merge",
+        "caption": "",
+        "command": "",
+        "args": {},
+        "mnemonic": "",
+        "visible": false
+    },
+    {
+        "id": "file_history_in_sublime_merge",
+        "caption": "",
+        "command": "",
+        "args": {},
+        "mnemonic": "",
+        "visible": false
+    },
+    {
+        "id": "line_history_in_sublime_merge",
+        "caption": "",
+        "command": "",
+        "args": {},
+        "mnemonic": "",
+        "visible": false
+    },
+    
+    // Наші власні команди
     {
         "id": "git-tools",
         "caption": "Open in GitK",
