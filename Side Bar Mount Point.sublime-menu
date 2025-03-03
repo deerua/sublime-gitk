@@ -1,28 +1,4 @@
 [
-    {
-        "caption": "Open in GitK",
-        "command": "gitk_from_sidebar",
-        "args": {"files": [], "dirs": []}
-    },
-    {
-        "caption": "-"
-    },
-    {
-        "caption": "Copy Name",
-        "command": "copy_name",
-        "args": {"files": [], "dirs": []}
-    },
-    {
-        "caption": "Copy Git Path",
-        "command": "copy_git_path",
-        "args": {"files": [], "dirs": []}
-    },
-    {
-        "caption": "-"
-    },
-    {
-        "caption": "Copy Project Structure",
-        "command": "copy_project_structure",
-        "args": {"files": [], "dirs": []}
-    }
+    // Цей файл був очищений, щоб уникнути дублювання команд
+    // Команди перенесено до файлів Side Bar.sublime-menu та Context.sublime-menu
 ]
