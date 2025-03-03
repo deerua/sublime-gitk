@@ -5,6 +5,9 @@
         "args": {"files": [], "dirs": []}
     },
     {
+        "caption": "-"
+    },
+    {
         "caption": "Open CMD Here",
         "command": "open_terminal",
         "args": {
