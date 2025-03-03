@@ -70,3 +70,48 @@ class CopyProjectStructureCommand(sublime_plugin.WindowCommand):
         
     def is_visible(self, files=None, dirs=None):
         return bool(files or dirs)
+
+
+# TextCommand версії команд для контекстного меню
+class CopyNameTextCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        view = self.view
+        if not view.file_name():
+            return
+            
+        path = view.file_name()
+        name = os.path.basename(path)
+        
+        sublime.set_clipboard(name)
+        sublime.status_message("Copied: {0}".format(name))
+        
+    def is_visible(self):
+        return bool(self.view.file_name())
+
+class CopyGitPathTextCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        view = self.view
+        if not view.file_name():
+            return
+            
+        path = view.file_name()
+        git_root = utils.get_git_root(path)
+        if not git_root:
+            return
+            
+        # Отримуємо ім'я репозиторію (останній компонент шляху кореня git)
+        repo_name = os.path.basename(git_root)
+        
+        # Отримуємо відносний шлях у репозиторії
+        rel_path = utils.get_git_path(path)
+        
+        if rel_path:
+            # Формуємо повний шлях у форматі repo_name/path
+            full_git_path = "{0}/{1}".format(repo_name, rel_path)
+            
+            sublime.set_clipboard(full_git_path)
+            sublime.status_message("Copied Git path: {0}".format(full_git_path))
+        
+    def is_visible(self):
+        # Показуємо команду тільки якщо файл відкритий та існує
+        return bool(self.view.file_name())
