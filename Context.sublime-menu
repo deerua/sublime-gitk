@@ -8,12 +8,10 @@
     },
     {
         "caption": "Copy Name",
-        "command": "copy_name",
-        "args": {"files": [], "dirs": []}
+        "command": "copy_name_text"
     },
     {
         "caption": "Copy Git Path",
-        "command": "copy_git_path",
-        "args": {"files": [], "dirs": []}
+        "command": "copy_git_path_text"
     }
 ]
