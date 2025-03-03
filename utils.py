@@ -24,7 +24,7 @@ def get_git_root(path):
     except subprocess.CalledProcessError:
         sublime.error_message("Directory is not a git repository")
         return None
-    except FileNotFoundError:
+    except (OSError, IOError) as e:
         sublime.error_message("Git not found. Please ensure it is installed")
         return None
 
@@ -79,7 +79,7 @@ def get_project_structure(path, depth=None, current_depth=0):
                 # Якщо це файл, просто додаємо його
                 result.append("{0}📄 {1}".format(prefix, item))
     
-    except (PermissionError, FileNotFoundError) as e:
+    except (PermissionError, OSError, IOError) as e:
         result.append("Error accessing {0}: {1}".format(path, str(e)))
     
     return result
