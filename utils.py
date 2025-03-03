@@ -70,16 +70,16 @@ def get_project_structure(path, depth=None, current_depth=0):
             
             if os.path.isdir(item_path):
                 # Якщо це директорія, додаємо її з слешем
-                result.append(f"{prefix}📁 {item}/")
+                result.append("{0}📁 {1}/".format(prefix, item))
                 
                 # Рекурсивно отримуємо вміст цієї директорії
                 children = get_project_structure(item_path, depth, current_depth + 1)
                 result.extend(children)
             else:
                 # Якщо це файл, просто додаємо його
-                result.append(f"{prefix}📄 {item}")
+                result.append("{0}📄 {1}".format(prefix, item))
     
     except (PermissionError, FileNotFoundError) as e:
-        result.append(f"Error accessing {path}: {str(e)}")
+        result.append("Error accessing {0}: {1}".format(path, str(e)))
     
     return result
