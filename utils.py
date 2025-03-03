@@ -76,7 +76,22 @@ def is_ignored_by_git(path, git_root=None):
 def is_hidden(path):
     """Перевірити, чи файл/папка є прихованими"""
     name = os.path.basename(path)
-    return name.startswith('.') or (os.name == 'nt' and os.stat(path).st_file_attributes & 2)
+    
+    # Всі файли, що починаються з крапки, вважаються прихованими
+    if name.startswith('.'):
+        return True
+        
+    # Додаткова перевірка для Windows
+    if os.name == 'nt':
+        try:
+            import stat
+            return bool(os.stat(path).st_file_attributes & stat.FILE_ATTRIBUTE_HIDDEN)
+        except:
+            # Якщо виникла помилка при перевірці атрибутів, 
+            # використовуємо лише перевірку на ім'я
+            return name.startswith('.')
+            
+    return False
 
 def get_project_structure(path, depth=None, current_depth=0):
     """Рекурсивно отримати структуру проекту (папки/файли)"""
@@ -96,7 +111,7 @@ def get_project_structure(path, depth=None, current_depth=0):
     
     # Отримуємо список файлів та директорій
     try:
-        items = os.listdir(path)
+        items = sorted(os.listdir(path))
         
         for item in items:
             item_path = os.path.join(path, item)
