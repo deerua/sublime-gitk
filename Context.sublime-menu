@@ -1,16 +1,20 @@
 [
     {
+        "id": "git-tools",
         "caption": "Open in GitK",
         "command": "gitk"
     },
     {
+        "id": "zzzz1",
         "caption": "-"
     },
     {
+        "id": "zzzz2",
         "caption": "Copy Name",
         "command": "copy_name_text"
     },
     {
+        "id": "zzzz3",
         "caption": "Copy Git Path",
         "command": "copy_git_path_text"
     }
