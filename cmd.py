@@ -42,36 +42,19 @@ class OpenTerminalCommand(sublime_plugin.WindowCommand):
             if not terminal:
                 raise ValueError("Unknown terminal type: {0}".format(terminal_type))
 
-            # Виправлення для CMD: не використовуємо 'start' (це усуває подвійне відкриття)
-            if terminal_type == 'cmd':
-                # Запускаємо cmd безпосередньо з правильними аргументами
-                cmd_args = [
-                    terminal['command'],
-                    '/K', 
-                    'cd /d "{0}"'.format(path)
-                ]
-                
-                print("Starting {0} in: {1} with args: {2}".format(terminal['name'], path, cmd_args))
-                process = subprocess.Popen(
-                    cmd_args,
-                    cwd=path,
-                    startupinfo=startupinfo
-                )
-            else:
-                # Для інших терміналів (PowerShell тощо) залишаємо як є
-                cmd = 'start {command} {args}'.format(
-                    command=terminal['command'],
-                    args=terminal['args'].format(path=path)
-                )
-                
-                print("Starting {0} in: {1}".format(terminal['name'], path))
-                process = subprocess.Popen(
-                    cmd,
-                    cwd=path,
-                    startupinfo=startupinfo,
-                    shell=True
-                )
-                
+            # Формуємо команду з параметрами
+            cmd = 'start {command} {args}'.format(
+                command=terminal['command'],
+                args=terminal['args'].format(path=path)
+            )
+            
+            print("Starting {0} in: {1}".format(terminal['name'], path))
+            process = subprocess.Popen(
+                cmd,
+                cwd=path,
+                startupinfo=startupinfo,
+                shell=True
+            )
             print("{0} process started: {1}".format(terminal['name'], process.pid))
             
         except Exception as e:
