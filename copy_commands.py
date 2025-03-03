@@ -13,7 +13,7 @@ class CopyNameCommand(sublime_plugin.WindowCommand):
         name = os.path.basename(path)
         
         sublime.set_clipboard(name)
-        sublime.status_message(f"Copied: {name}")
+        sublime.status_message("Copied: {0}".format(name))
         
     def is_visible(self, files=None, dirs=None):
         return bool(files or dirs)
@@ -29,7 +29,7 @@ class CopyGitPathCommand(sublime_plugin.WindowCommand):
         
         if git_path:
             sublime.set_clipboard(git_path)
-            sublime.status_message(f"Copied Git path: {git_path}")
+            sublime.status_message("Copied Git path: {0}".format(git_path))
         
     def is_visible(self, files=None, dirs=None):
         return bool(files or dirs)
@@ -45,17 +45,17 @@ class CopyProjectStructureCommand(sublime_plugin.WindowCommand):
         # Визначаємо, чи це директорія чи файл
         if os.path.isdir(path):
             dir_name = os.path.basename(path)
-            structure = [f"📁 {dir_name}/"]
+            structure = ["📁 {0}/".format(dir_name)]
             structure.extend(utils.get_project_structure(path, depth=depth))
         else:
             file_name = os.path.basename(path)
-            structure = [f"📄 {file_name}"]
+            structure = ["📄 {0}".format(file_name)]
         
         # Формуємо текст для копіювання
         structure_text = "\n".join(structure)
         
         sublime.set_clipboard(structure_text)
-        sublime.status_message(f"Copied project structure with depth {depth}")
+        sublime.status_message("Copied project structure with depth {0}".format(depth))
         
     def is_visible(self, files=None, dirs=None):
         return bool(files or dirs)
