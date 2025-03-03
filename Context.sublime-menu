@@ -2,5 +2,16 @@
     {
         "caption": "Open in GitK",
         "command": "gitk"
+    },
+    {
+        "caption": "-"
+    },
+    {
+        "caption": "Copy Name",
+        "command": "copy_name"
+    },
+    {
+        "caption": "Copy Git Path",
+        "command": "copy_git_path"
     }
 ]
