@@ -5,6 +5,9 @@
         "args": {"files": [], "dirs": []}
     },
     {
+        "caption": "-"
+    },
+    {
         "caption": "Open CMD Here",
         "command": "open_terminal",
         "args": {
@@ -19,5 +22,23 @@
             "dirs": [],
             "terminal_type": "powershell"
         }
+    },
+    {
+        "caption": "-"
+    },
+    {
+        "caption": "Copy Name",
+        "command": "copy_name",
+        "args": {"files": [], "dirs": []}
+    },
+    {
+        "caption": "Copy Git Path",
+        "command": "copy_git_path",
+        "args": {"files": [], "dirs": []}
+    },
+    {
+        "caption": "Copy Project Structure",
+        "command": "copy_project_structure",
+        "args": {"dirs": []}
     }
 ]
