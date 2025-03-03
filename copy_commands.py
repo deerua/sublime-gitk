@@ -25,11 +25,22 @@ class CopyGitPathCommand(sublime_plugin.WindowCommand):
             return
             
         path = selected_paths[0]
-        git_path = utils.get_git_path(path)
+        git_root = utils.get_git_root(path)
+        if not git_root:
+            return
+            
+        # Отримуємо ім'я репозиторію (останній компонент шляху кореня git)
+        repo_name = os.path.basename(git_root)
         
-        if git_path:
-            sublime.set_clipboard(git_path)
-            sublime.status_message("Copied Git path: {0}".format(git_path))
+        # Отримуємо відносний шлях у репозиторії
+        rel_path = utils.get_git_path(path)
+        
+        if rel_path:
+            # Формуємо повний шлях у форматі repo_name/path
+            full_git_path = "{0}/{1}".format(repo_name, rel_path)
+            
+            sublime.set_clipboard(full_git_path)
+            sublime.status_message("Copied Git path: {0}".format(full_git_path))
         
     def is_visible(self, files=None, dirs=None):
         return bool(files or dirs)
