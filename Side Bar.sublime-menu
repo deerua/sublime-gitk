@@ -39,6 +39,6 @@
     {
         "caption": "Copy Project Structure",
         "command": "copy_project_structure",
-        "args": {"files": [], "dirs": []}
+        "args": {"dirs": []}
     }
 ]

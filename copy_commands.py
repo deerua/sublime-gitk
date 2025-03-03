@@ -43,7 +43,6 @@ class CopyGitPathCommand(sublime_plugin.WindowCommand):
         return bool(files or dirs)
 
 class CopyProjectStructureCommand(sublime_plugin.WindowCommand):
-    # Папки, які ми завжди ігноруємо (додатково до .gitignore)
     IGNORED_DIRS = ['node_modules', '.git', '.idea', '.vscode', 'dist', 'build']
     
     def run(self, files=None, dirs=None, depth=10):
@@ -53,13 +52,10 @@ class CopyProjectStructureCommand(sublime_plugin.WindowCommand):
             
         path = selected_paths[0]
         
-        # Отримуємо структуру проекту
         if os.path.isdir(path):
             structure = []
-            # Починаємо від вибраної директорії (current_depth=0)
             self._process_directory(path, structure, 0, depth)
         else:
-            # Якщо це файл, просто повертаємо його ім'я
             file_name = os.path.basename(path)
             structure = ["📄 {0}".format(file_name)]
         
@@ -73,30 +69,25 @@ class CopyProjectStructureCommand(sublime_plugin.WindowCommand):
         if max_depth is not None and current_depth > max_depth:
             return
         
-        # Додаємо поточну директорію
         dir_name = os.path.basename(path)
         
-        # Перевіряємо, чи не є ця директорія ігнорованою
         if dir_name in self.IGNORED_DIRS:
             return
             
         prefix = '   ' * current_depth
         result.append("{0}📁 {1}/".format(prefix, dir_name))
         
-        # Отримуємо вміст директорії
         git_root = utils.get_git_root(path)
         
         try:
             items = sorted(os.listdir(path))
             
-            # Спочатку збираємо директорії, потім файли
             dirs = []
             files = []
             
             for item in items:
                 item_path = os.path.join(path, item)
                 
-                # Пропускаємо приховані файли, ігноровані директорії та ті, що в .gitignore
                 if utils.is_hidden(item_path):
                     continue
                 if item in self.IGNORED_DIRS:
@@ -109,12 +100,10 @@ class CopyProjectStructureCommand(sublime_plugin.WindowCommand):
                 else:
                     files.append(item)
             
-            # Обробляємо спочатку директорії
             for dir_item in dirs:
                 dir_path = os.path.join(path, dir_item)
                 self._process_directory(dir_path, result, current_depth + 1, max_depth)
             
-            # Потім додаємо файли
             for file_item in files:
                 file_prefix = '   ' * (current_depth + 1)
                 result.append("{0}📄 {1}".format(file_prefix, file_item))
